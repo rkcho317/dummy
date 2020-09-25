@@ -28,32 +28,33 @@ int main()
 		{
 			/* TODO: Create a child */
 
-			pid == fork();
+			pid = fork();
 
 			/* TODO: Error check to make sure the child was successfully created */
 			if (pid < 0) {
 				/*** TODO: If I am child, I will do this: ****/
-			/* Call execlp() to replace my program with that specified at the command line.
-			 * PLEASE NOTE: YOU CANNOT PASS cmdBuff DIRECTLY to execlp(). It is because
-			 * cmdBuff is an object of type string (i.e., a class) and execlp() expects
-			 * an array of characters.  However, you can pass cmdBuff.c_str(), which will
-			 * return an array of characters representation of the string object.
-			 *
-			 * Also, please do not forget to error check your exelp() system calls.
-			 */
+
 				perror("fork");
 				exit(-1);
-				return 0;
 			}
 				/*** TODO: If I am a parent, I will do the following ***?
 				/* Wait for the child process to terminate */
-			else if (pid == 0) {
-				execlp("/bin","cmdBuff.c_str()" , NULL);
+			if (pid == 0) {
+				string cmdb = cmdBuff.substr(0,cmdBuff.find(' '));
+
+				if (execlp(cmdb.c_str(),cmdBuff.c_str(), NULL)<0)
+				{
+					perror(cmdb.c_str());
+					exit(-1);
+				}
 			}
 
-			else {
-				wait(NULL);
-				return 0;
+			if (pid > 0)
+			{
+				if (wait(NULL)<0){
+					perror("Wait failure");
+					exit(-1);
+				}
 			}
 
 
