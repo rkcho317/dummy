@@ -48,8 +48,7 @@ int main()
 				/*** TODO: If I am a parent, I will do the following ***?
 				/* Wait for the child process to terminate */
 			else if (pid == 0) {
-        const char* nope=cmdBuff.c_str();
-				execlp(nope);
+				execlp("/bin","cmdBuff.c_str()" , NULL);
 			}
 
 			else {
