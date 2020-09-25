@@ -30,16 +30,12 @@ int main()
 
 			pid = fork();
 
-			/* TODO: Error check to make sure the child was successfully created */
 			if (pid < 0) {
-				/*** TODO: If I am child, I will do this: ****/
-
-				perror("fork");
+				perror("fork ");
 				exit(-1);
 			}
-				/*** TODO: If I am a parent, I will do the following ***?
-				/* Wait for the child process to terminate */
-			if (pid == 0) {
+
+			else if (pid == 0) {
 				string cmdb = cmdBuff.substr(0,cmdBuff.find(' '));
 
 				if (execlp(cmdb.c_str(),cmdBuff.c_str(), NULL)<0)
@@ -49,10 +45,10 @@ int main()
 				}
 			}
 
-			if (pid > 0)
+			else if (pid > 0)
 			{
 				if (wait(NULL)<0){
-					perror("Wait failure");
+					perror("Wait failure ");
 					exit(-1);
 				}
 			}
