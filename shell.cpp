@@ -43,17 +43,18 @@ int main()
 			 */
 				perror("fork");
 				exit(-1);
-				return;
+				return 0;
 			}
 				/*** TODO: If I am a parent, I will do the following ***?
 				/* Wait for the child process to terminate */
 			else if (pid == 0) {
-				execlp("/bin/ls", "ls",NULL);
+        string nope=cmdBuff.c_str();
+				execlp(nope);
 			}
 
 			else {
 				wait(NULL);
-				return;
+				return 0;
 			}
 
 
