@@ -36,11 +36,11 @@ int main()
 			}
 
 			else if (pid == 0) {
-				string cmdb = cmdBuff.substr(0,cmdBuff.find(' '));
 
-				if (execlp(cmdb.c_str(),cmdBuff.c_str(), NULL)<0)
+
+				if (execlp(cmdBuff.c_str(),cmdBuff.c_str(), NULL)<0)
 				{
-					perror(cmdb.c_str());
+					perror(cmdBuff.c_str());
 					exit(-1);
 				}
 			}
